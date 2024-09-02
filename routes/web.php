@@ -19,11 +19,11 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Welcome');
 });
-
-//Route::middleware('auth')->group(function () {
-//    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-//});
+Route::get('/how-it-works', function () {
+    return Inertia::render('HowItWorks');
+});
+Route::get('/compare', function () {
+    return Inertia::render('Compare');
+});
 
 require __DIR__.'/auth.php';

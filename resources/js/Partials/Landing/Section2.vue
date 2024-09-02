@@ -144,9 +144,11 @@
         </div>
 
         <div class="mt-8 text-center">
-            <button class="bg-secondary-600 hover:bg-secondary-500 text-white font-bold py-3 px-6 rounded-size">
-                Yes! I want to get my fair cash offer!
-            </button>
+            <a href="/#form">
+                <button class="bg-secondary-600 hover:bg-secondary-500 text-white font-bold py-3 px-6 rounded-size">
+                    Yes! I want to get my fair cash offer!
+                </button>
+            </a>
         </div>
     </div>
 </template>

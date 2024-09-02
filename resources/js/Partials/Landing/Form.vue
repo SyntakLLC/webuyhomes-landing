@@ -16,6 +16,10 @@
                 <TextInput v-model="email" type="text" class="text-sm" placeholder="john@doe.com" />
             </div>
 
+            <div v-if="verificationMessage" class="col-span-2 text-center" :class="{'text-green-600': verificationSuccess, 'text-red-600': !verificationSuccess}">
+                {{ verificationMessage }}
+            </div>
+
             <div class="col-span-2 text-gray-500 text-xs">
                 By clicking Get My Cash Offer, you agree to receive calls and texts, including by autodialer, prerecorded messages, and artificial voice, and email from We Buy Homes or one of its partners but not as a condition of any purchase, and you agree to the Terms of Use and Privacy Policy.
             </div>
@@ -82,6 +86,12 @@ export default {
         };
 
         const submitForm = async () => {
+            if (!propertyAddress.value || !phone.value || !email.value) {
+                verificationMessage.value = 'Please fill out all fields.';
+                console.log('here');
+                return;
+            }
+
             try {
                 const response = await axios.post('https://homexe-new.test/api/verify', {
                     property_address: propertyAddress.value,
@@ -90,16 +100,32 @@ export default {
                 });
                 verificationCode.value = response.data.verification_code;
                 showVerificationForm.value = true;
+                this.verificationMessage = "";
             } catch (error) {
                 console.error('Error submitting form:', error);
                 verificationMessage.value = 'An error occurred. Please try again.';
             }
         };
 
-        const verifyCode = () => {
+        const sendLead = async () => {
+            try {
+                await axios.post('https://homexe-new.test/api/verify/send-lead', {
+                    phone: addUsCountryCode(phone.value),
+                    email: email.value,
+                    address: propertyAddress.value
+                });
+                verificationMessage.value = 'Information submitted successfully!';
+            } catch (error) {
+                console.error('Error sending lead:', error);
+                verificationMessage.value = 'An error occurred while sending your information. Please try again.';
+            }
+        };
+
+        const verifyCode = async () => {
             if (enteredVerificationCode.value === verificationCode.value) {
                 verificationSuccess.value = true;
                 verificationMessage.value = 'Verification successful!';
+                await sendLead();
             } else {
                 verificationSuccess.value = false;
                 verificationMessage.value = 'Invalid verification code. Please try again.';

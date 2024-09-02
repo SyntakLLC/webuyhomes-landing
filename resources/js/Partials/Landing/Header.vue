@@ -71,7 +71,9 @@
             <!-- Logo -->
             <div class="flex justify-start items-center text-zinc-800">
                 <div class="flex flex-col items-start h-full text-left">
-                    <Logo />
+                    <Link href="/">
+                        <Logo />
+                    </Link>
                 </div>
             </div>
 
@@ -88,9 +90,8 @@
                             </li>
                         </ul>
                     </nav>
-                    <a id="link_text-18-225"
-                       class="inline-block py-2 px-4 max-w-full text-base font-extrabold tracking-wider text-center text-white bg-secondary-600 rounded-lg border border-none cursor-pointer border-slate-400 hover:border-slate-400 hover:bg-secondary-500 hover:text-white"
-                       href="/sell-my-house-fast-online-quote/" target="_self">
+                    <a class="inline-block py-2 px-4 max-w-full text-base font-extrabold tracking-wider text-center text-white bg-secondary-600 rounded-lg border border-none cursor-pointer border-slate-400 hover:border-slate-400 hover:bg-secondary-500 hover:text-white"
+                       href="/#form" target="_self">
                         Online Quote &rarr;
                     </a>
                 </div>
@@ -128,7 +129,7 @@
                             </li>
                         </ul>
                     </nav>
-                    <a href="/sell-my-house-fast-online-quote/"
+                    <a href="/#form"
                        class="block mt-6 py-2 px-4 text-lg font-extrabold text-center text-white bg-secondary-600 rounded-lg hover:bg-secondary-500">
                         Online Quote &rarr;
                     </a>
@@ -140,35 +141,36 @@
 
 <script>
 import { ref } from 'vue';
+import { Link } from "@inertiajs/vue3";
 import Logo from "@/Components/Logo.vue";
 
 export default {
     name: "Header",
-    components: { Logo },
+    components: { Logo, Link },
     setup() {
         const isMenuOpen = ref(false);
 
         const navItems = [
             {
                 title: 'How It Works',
-                url: 'https://www.sellmyhousefast.com/how-we-buy-houses/'
+                url: '/how-it-works/'
             },
             {
-                title: 'Reviews',
-                url: 'https://www.sellmyhousefast.com/reviews/'
+                title: 'Compare',
+                url: '/compare/'
             },
-            {
-                title: 'Our Company',
-                url: 'https://www.sellmyhousefast.com/our-company/'
-            },
-            {
-                title: 'About Us',
-                url: 'https://www.sellmyhousefast.com/about-us/'
-            },
-            {
-                title: 'Investors',
-                url: 'https://www.sellmyhousefast.com/leads/'
-            }
+            // {
+            //     title: 'Our Company',
+            //     url: 'https://www.sellmyhousefast.com/our-company/'
+            // },
+            // {
+            //     title: 'About Us',
+            //     url: 'https://www.sellmyhousefast.com/about-us/'
+            // },
+            // {
+            //     title: 'Investors',
+            //     url: 'https://www.sellmyhousefast.com/leads/'
+            // }
         ];
 
         return {

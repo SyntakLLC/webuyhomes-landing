@@ -4,7 +4,7 @@
             <img src="../../../img/house2.jpeg"
                  alt="Background photo of house"
                  class="absolute inset-0 w-full h-full object-cover"/> <!-- h-[600px]  -->
-            <div class="bg-black/20 backdrop-blur-md absolute inset-0 w-full h-full"></div>
+            <div class="bg-black/20 absolute inset-0 w-full h-full"></div>
 
     <!--        <Header />-->
 

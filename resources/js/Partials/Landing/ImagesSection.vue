@@ -18,7 +18,7 @@
 
                 <!-- Content section -->
                 <div class="space-y-6 order-1 md:order-2">
-                    <h1 class="heading-lg text-white text-center mb-6">Need To Sell Your Home?</h1>
+                    <h1 id="form" class="heading-lg text-white text-center mb-6">Need To Sell Your Home?</h1>
                     <p class="text-white/70">
                         If you need to sell your house fast, you can avoid the hassles of a traditional sale! Imagine having
                         to find a real estate agent, make repairs, clean, deal with open houses and showings, and pay

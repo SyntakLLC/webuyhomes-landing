@@ -35,7 +35,7 @@
                 <p class="mb-4">We work differently at WeBuyHomes.US. We're not just real estate investors, and we're not just real estate agents - we're both! When you work with us, you will have many different options for selling your home fast in Your Local Market.</p>
                 <p class="mb-4">Contact us and submit the short property information form. We can give you a fair cash offer quickly and close whenever YOU choose.</p>
                 <p>We can also help you list and market your property for the highest price. It's entirely up to you! We can handle various property conditions and situations, including tenants. We offer flexible closing options, even as quick as 7 days in some cases.</p>
-                <p class="mt-4"><a href="#" class="text-secondary-600 hover:underline">Learn more about our process →</a></p>
+                <p class="mt-4"><a href="/how-it-works" class="text-secondary-600 hover:underline">Learn more about our process →</a></p>
             </div>
         </div>
 

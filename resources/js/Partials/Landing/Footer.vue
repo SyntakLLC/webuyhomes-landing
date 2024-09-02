@@ -14,7 +14,7 @@
                         <p>+1 855-781-HOME</p>
 <!--                        <p>team@webuyhomes.com</p>-->
                     </div>
-                    <Logo class="w-24 h-24" />
+                    <Logo white class="w-24 h-24" />
                 </div>
 <!--                <div class="flex flex-col items-end">-->
 <!--                    <div class="flex space-x-4 mb-4">-->

@@ -40,7 +40,7 @@
                             </span>
                         </div>
                         <p v-if="selectedStates.includes(state)" class="text-sm text-green-600 ml-6 mt-1">
-                            You have selected We Buy Homes {{ state }}
+                            We sell homes in {{ state }}!
                         </p>
                     </li>
                 </ul>

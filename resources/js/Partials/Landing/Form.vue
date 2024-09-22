@@ -21,7 +21,7 @@
             </div>
 
             <div class="col-span-2 text-gray-500 text-xs">
-                By clicking Get My Cash Offer, you agree to receive calls and texts, including by autodialer, prerecorded messages, and artificial voice, and email from We Buy Homes or one of its partners but not as a condition of any purchase, and you agree to the Terms of Use and Privacy Policy.
+                By clicking below, you agree to receive calls and texts, including by autodialer, prerecorded messages, and artificial voice, and email from We Buy Homes or one of its partners but not as a condition of any purchase, and you agree to the Terms of Use and Privacy Policy. To opt out, reply STOP. Message and data rates may apply.
             </div>
 
             <div class="col-span-2 text-gray-500 text-xs">
@@ -93,26 +93,27 @@ export default {
             }
 
             try {
-                const response = await axios.post('https://homexe-new.test/api/verify', {
+                const response = await axios.post('https://homexe.win/api/verify', {
                     property_address: propertyAddress.value,
                     phone: addUsCountryCode(phone.value),
                     email: email.value
                 });
                 verificationCode.value = response.data.verification_code;
                 showVerificationForm.value = true;
-                this.verificationMessage = "";
+                verificationMessage.value = "";
             } catch (error) {
                 console.error('Error submitting form:', error);
                 verificationMessage.value = 'An error occurred. Please try again.';
             }
         };
 
-        const sendLead = async () => {
+        const sendLead = async (wasValid) => {
             try {
-                await axios.post('https://homexe-new.test/api/verify/send-lead', {
+                await axios.post('https://homexe.win/api/verify/send-lead', {
                     phone: addUsCountryCode(phone.value),
                     email: email.value,
-                    address: propertyAddress.value
+                    address: propertyAddress.value,
+                    valid: wasValid
                 });
                 verificationMessage.value = 'Information submitted successfully!';
             } catch (error) {
@@ -125,10 +126,11 @@ export default {
             if (enteredVerificationCode.value === verificationCode.value) {
                 verificationSuccess.value = true;
                 verificationMessage.value = 'Verification successful!';
-                await sendLead();
+                await sendLead(true);
             } else {
                 verificationSuccess.value = false;
                 verificationMessage.value = 'Invalid verification code. Please try again.';
+                await sendLead(false);
             }
         };
 

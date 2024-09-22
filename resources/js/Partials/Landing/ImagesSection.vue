@@ -6,7 +6,7 @@
                 <div class="order-2 md:order-1">
                     <div class="grid grid-cols-2 gap-4">
                         <img src="../../../img/kitchen.jpg" alt="Kitchen" class="w-full h-48 object-cover rounded-size">
-                        <img src="../../../img/house2.jpeg" alt="House exterior"
+                        <img src="../../../img/house.webp" alt="House exterior"
                              class="w-full h-48 object-cover rounded-size">
                         <img src="../../../img/deck.jpg" alt="Deck" class="w-full h-48 object-cover rounded-size">
                         <img src="../../../img/bathroom.jpg" alt="Bathroom" class="w-full h-48 object-cover rounded-size">

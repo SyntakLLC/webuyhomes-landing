@@ -1,10 +1,10 @@
 <template>
     <div class="-skew-y-[1.5deg]">
         <div class="relative w-full h-full overflow-hidden">
-            <img src="../../../img/house2.jpeg"
+            <img src="../../../img/house.webp"
                  alt="Background photo of house"
                  class="absolute inset-0 w-full h-full object-cover"/> <!-- h-[600px]  -->
-            <div class="bg-black/20 absolute inset-0 w-full h-full"></div>
+            <div class="bg-black/40 absolute inset-0 w-full h-full"></div>
 
     <!--        <Header />-->
 

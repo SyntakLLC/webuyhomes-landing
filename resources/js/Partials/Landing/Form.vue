@@ -1,66 +1,76 @@
 <template>
-    <div class="mt-4 bg-white max-w-xl px-6 py-8"
+    <div class="mt-4 max-w-xl px-6 py-8"
          :style="`filter: drop-shadow(0 1px 20px rgba(0, 0, 0, ${small ? 0 : .5}));`">
-
-        <div v-if="!showVerificationForm" class="grid grid-cols-2 gap-4 text-black">
-            <div class="col-span-2 flex flex-col items-start">
-                <InputLabel>Property Address</InputLabel>
-                <TextInput v-model="propertyAddress" type="text" class="text-sm w-full" placeholder="405 Main St" />
-            </div>
-            <div class="col-span-1 flex flex-col items-start">
-                <InputLabel>Phone</InputLabel>
-                <TextInput v-model="phone" type="text" class="text-sm" placeholder="123 456 7890" />
-            </div>
-            <div class="col-span-1 flex flex-col items-start">
-                <InputLabel>Email</InputLabel>
-                <TextInput v-model="email" type="text" class="text-sm" placeholder="john@doe.com" />
-            </div>
-
-            <div v-if="verificationMessage" class="col-span-2 text-center" :class="{'text-green-600': verificationSuccess, 'text-red-600': !verificationSuccess}">
-                {{ verificationMessage }}
-            </div>
-
-            <div class="col-span-2 text-gray-500 text-xs">
-                By clicking below, you agree to receive calls and texts, including by autodialer, prerecorded messages, and artificial voice, and email from We Buy Homes or one of its partners but not as a condition of any purchase, and you agree to the Terms of Use and Privacy Policy. To opt out, reply STOP. Message and data rates may apply.
-            </div>
-
-            <div class="col-span-2 text-gray-500 text-xs">
-                <button @click="submitForm" :class="[small ? 'heading-sm' : 'text-4xl', 'bg-secondary-600 hover:bg-secondary-500 font-semibold uppercase text-white px-4 pt-3 pb-4 w-full font-display text-center']">
-                    Get My Cash Offer
-                </button>
+        <!-- Initial form to enter address -->
+        <div class="flex items-center justify-center mx-4 text-black text-left">
+            <div class="relative w-full">
+                <InputLabel class="mb-2 text-lg text-white/80">Enter your address</InputLabel>
+                <div class="relative flex items-center md:min-w-[540px]">
+                    <TextInput 
+                        v-model="form.propertyAddress" 
+                        type="text" 
+                        class="text-lg w-full pr-36 py-3 px-4 shadow-md focus:outline-none" 
+                        placeholder="405 Main St" 
+                        :class="{ 'border-none': true }"
+                    />
+                    <button 
+                        @click="findMatches" 
+                        class="absolute right-0 bg-secondary-600 hover:bg-secondary-500 text-base font-display font-semibold uppercase text-white px-4 pt-2 pb-3 h-full rounded-r-lg"
+                        :class="{ 'error-animation': showError }"
+                    >
+                        {{ buttonText }}
+                    </button>
+                </div>
+                <p v-if="addressError" class="text-red-500 text-sm mt-2">{{ addressError }}</p>
             </div>
         </div>
 
-        <div v-else class="grid grid-cols-2 gap-4">
-            <div class="col-span-2 flex flex-col items-start text-black">
-                <InputLabel>Verification Code</InputLabel>
-                <TextInput v-model="enteredVerificationCode" type="text" class="text-sm w-full" placeholder="Enter your verification code" />
-            </div>
-
-            <div class="col-span-2">
-                <button @click="verifyCode" class="bg-secondary-600 hover:bg-secondary-500 text-xl tracking-wide font-semibold uppercase text-white px-4 pt-3 pb-4 w-full font-display text-center">
-                    Verify Code
-                </button>
-            </div>
-
-            <div v-if="verificationMessage" class="col-span-2 text-center" :class="{'text-green-600': verificationSuccess, 'text-red-600': !verificationSuccess}">
-                {{ verificationMessage }}
-            </div>
-        </div>
+        <!-- Multi-page form in BottomDrawer -->
+        <BottomDrawer :show="showMultiPageForm" @close="closeMultiPageForm">
+            <TimeframeSection v-if="currentStep === 'timeframe'" @next="handleTimeframeNext" @back="handleBack" />
+            <PreviousSaleSection v-if="currentStep === 'previousSale'" @next="handlePreviousSaleNext" @back="handleBack" />
+            <HomeConditionSection v-if="currentStep === 'homeCondition'" @next="handleHomeConditionNext" @back="handleBack" />
+            <ReasonForSellingSection v-if="currentStep === 'reasonForSelling'" @next="handleReasonForSellingNext" @back="handleBack" />
+            <MostImportantSection v-if="currentStep === 'mostImportant'" @next="handleMostImportantNext" @back="handleBack" />
+            <BuyingIntentionSection v-if="currentStep === 'buyingIntention'" @next="handleBuyingIntentionNext" @back="handleBack" />
+            <ContactInfoSection
+                v-if="currentStep === 'contactInfo'"
+                ref="contactInfoSection"
+                :initialData="form"
+                @submit="handleContactInfoSubmit"
+                @verify="handleVerification"
+                @back="handleBack"
+            />
+        </BottomDrawer>
     </div>
 </template>
 
 <script>
-import { ref } from 'vue';
-import axios from 'axios';
+import { useForm } from '@inertiajs/vue3';
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
+import BottomDrawer from "@/Components/BottomDrawer.vue";
+import TimeframeSection from "@/Partials/Form/TimeframeSection.vue";
+import PreviousSaleSection from "@/Partials/Form/PreviousSaleSection.vue";
+import HomeConditionSection from "@/Partials/Form/HomeConditionSection.vue";
+import ReasonForSellingSection from "@/Partials/Form/ReasonForSellingSection.vue";
+import MostImportantSection from "@/Partials/Form/MostImportantSection.vue";
+import BuyingIntentionSection from "@/Partials/Form/BuyingIntentionSection.vue";
+import ContactInfoSection from "@/Partials/Form/ContactInfoSection.vue";
 
 export default {
     name: "Form",
     components: {
         TextInput,
-        InputLabel
+        InputLabel,
+        BottomDrawer,
+        TimeframeSection,
+        PreviousSaleSection,
+        HomeConditionSection,
+        ReasonForSellingSection,
+        MostImportantSection,
+        BuyingIntentionSection,
+        ContactInfoSection,
     },
     props: {
         small: {
@@ -68,83 +78,145 @@ export default {
             default: false
         }
     },
-    setup() {
-        const showVerificationForm = ref(false);
-        const propertyAddress = ref('');
-        const phone = ref('');
-        const email = ref('');
-        const verificationCode = ref('');
-        const enteredVerificationCode = ref('');
-        const verificationMessage = ref('');
-        const verificationSuccess = ref(false);
-
-        const addUsCountryCode = (phone) => {
-            if (phone.length === 10) {
-                return `+1${phone}`;
-            }
-            return phone;
+    data() {
+        return {
+            showMultiPageForm: false,
+            currentStep: 'timeframe',
+            verificationCode: '',
+            addressError: '',
+            showError: false,
+            buttonText: 'Find Matches',
+            form: useForm({
+                propertyAddress: '',
+                phone: '',
+                email: '',
+                timeframe: '',
+                previousSale: '',
+                homeCondition: '',
+                reasonForSelling: '',
+                mostImportant: '',
+                buyingIntention: '',
+            }),
+            contactInfoSectionRef: null,
         };
-
-        const submitForm = async () => {
-            if (!propertyAddress.value || !phone.value || !email.value) {
-                verificationMessage.value = 'Please fill out all fields.';
-                console.log('here');
-                return;
+    },
+    methods: {
+        findMatches() {
+            if (this.form.propertyAddress.trim()) {
+                this.showMultiPageForm = true;
+            } else {
+                this.showError = true;
+                this.buttonText = 'Address Required';
+                setTimeout(() => {
+                    this.showError = false;
+                    this.buttonText = 'Find Matches';
+                }, 1000);
             }
+        },
+        closeMultiPageForm() {
+            this.showMultiPageForm = false;
+            this.currentStep = 'timeframe';
+        },
+        handleTimeframeNext(data) {
+            this.form.timeframe = data.timeframe;
+            this.currentStep = 'previousSale';
+        },
+        handlePreviousSaleNext(data) {
+            this.form.previousSale = data.previousSale;
+            this.currentStep = 'homeCondition';
+        },
+        handleHomeConditionNext(data) {
+            this.form.homeCondition = data.condition;
+            this.currentStep = 'reasonForSelling';
+        },
+        handleReasonForSellingNext(data) {
+            this.form.reasonForSelling = data.reasonForSelling;
+            this.currentStep = 'mostImportant';
+        },
+        handleMostImportantNext(data) {
+            this.form.mostImportant = data.mostImportant;
+            this.currentStep = 'buyingIntention';
+        },
+        handleBuyingIntentionNext(data) {
+            this.form.buyingIntention = data.buyingIntention;
+            this.currentStep = 'contactInfo';
+        },
+        addUsCountryCode(phone) {
+            // Remove any non-digit characters from the phone number
+            const cleanedPhone = phone.replace(/\D/g, '');
+
+            // Check if the number already has the country code
+            if (cleanedPhone.startsWith('1') && cleanedPhone.length === 11) {
+                return '+' + cleanedPhone;
+            }
+
+            // Check if the number is a valid 10-digit US number
+            if (cleanedPhone.length === 10) {
+                return '+1' + cleanedPhone;
+            }
+
+            // If the number doesn't match expected formats, return the original input
+            console.warn('Invalid phone number format:', phone);
+            return phone;
+        },
+        async handleContactInfoSubmit(data) {
+            this.form.propertyAddress = data.propertyAddress;
+            this.form.phone = data.phone;
+            this.form.email = data.email;
 
             try {
                 const response = await axios.post('https://homexe.win/api/verify', {
-                    property_address: propertyAddress.value,
-                    phone: addUsCountryCode(phone.value),
-                    email: email.value
+                    property_address: this.form.propertyAddress,
+                    phone: this.addUsCountryCode(this.form.phone),
+                    email: this.form.email
                 });
-                verificationCode.value = response.data.verification_code;
-                showVerificationForm.value = true;
-                verificationMessage.value = "";
+                this.verificationCode = response.data.verification_code;
+                // The ContactInfoSection will show the verification form
             } catch (error) {
                 console.error('Error submitting form:', error);
-                verificationMessage.value = 'An error occurred. Please try again.';
+                // Handle error
             }
-        };
-
-        const sendLead = async (wasValid) => {
-            try {
-                await axios.post('https://homexe.win/api/verify/send-lead', {
-                    phone: addUsCountryCode(phone.value),
-                    email: email.value,
-                    address: propertyAddress.value,
-                    valid: wasValid
-                });
-                verificationMessage.value = 'Information submitted successfully!';
-            } catch (error) {
-                console.error('Error sending lead:', error);
-                verificationMessage.value = 'An error occurred while sending your information. Please try again.';
-            }
-        };
-
-        const verifyCode = async () => {
-            if (enteredVerificationCode.value === verificationCode.value) {
-                verificationSuccess.value = true;
-                verificationMessage.value = 'Verification successful!';
-                await sendLead(true);
+        },
+        handleBack() {
+            const steps = ['timeframe', 'previousSale', 'homeCondition', 'reasonForSelling', 'mostImportant', 'buyingIntention', 'contactInfo'];
+            const currentIndex = steps.indexOf(this.currentStep);
+            
+            if (currentIndex > 0) {
+                this.currentStep = steps[currentIndex - 1];
             } else {
-                verificationSuccess.value = false;
-                verificationMessage.value = 'Invalid verification code. Please try again.';
-                await sendLead(false);
+                this.closeMultiPageForm();
             }
-        };
-
-        return {
-            showVerificationForm,
-            propertyAddress,
-            phone,
-            email,
-            enteredVerificationCode,
-            verificationMessage,
-            verificationSuccess,
-            submitForm,
-            verifyCode
-        };
-    }
+        },
+        async handleVerification(code) {
+            if (this.verificationCode === code) {
+                // Show success message
+                this.$refs.contactInfoSection.showVerificationMessage('Verification successful!', true);
+                
+                // Close after 2 seconds
+                setTimeout(() => {
+                    this.closeMultiPageForm();
+                }, 2000);
+            } else {
+                // Show error message
+                this.$refs.contactInfoSection.showVerificationMessage('Incorrect verification code. Please try again.', false);
+            }
+        },
+        mounted() {
+            this.$nextTick(() => {
+                this.contactInfoSectionRef = this.$refs.contactInfoSection;
+            });
+        },
+    },
 }
 </script>
+
+<style scoped>
+.error-animation {
+    animation: fadeError 1s ease;
+}
+
+@keyframes fadeError {
+    0%, 100% { background-color: #dc2626; } /* red-600 */
+    50% { background-color: #dc2626; } /* red-600 */
+}
+</style>

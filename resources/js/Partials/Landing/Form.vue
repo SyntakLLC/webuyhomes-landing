@@ -165,7 +165,7 @@ export default {
             this.form.email = data.email;
 
             try {
-                const response = await axios.post('https://homexe-new.test/api/verify', {
+                const response = await axios.post('https://homexe.win/api/verify', {
                     property_address: this.form.propertyAddress,
                     phone: this.addUsCountryCode(this.form.phone),
                     email: this.form.email
@@ -224,7 +224,7 @@ export default {
         },
         async sendLead() {
             try {
-                await axios.post('https://homexe-new.test/api/verify/send-lead', {
+                await axios.post('https://homexe.win/api/verify/send-lead', {
                     phone: this.addUsCountryCode(this.form.phone),
                     email: this.form.email,
                     address: this.form.propertyAddress,

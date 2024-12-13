@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { Head } from '@inertiajs/vue3';
+import { Head } from "@inertiajs/vue3";
 import Header from "@/Partials/Landing/Header.vue";
 import Hero from "@/Partials/Landing/Hero.vue";
 import Section1 from "@/Partials/Landing/Section1.vue";
@@ -34,7 +34,7 @@ export default {
         Section1,
         Head,
         Hero,
-        Header
+        Header,
     },
 
     setup() {

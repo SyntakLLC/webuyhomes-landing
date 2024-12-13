@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[#e8e8e8] relative pb-2 z-10">
+    <div class="bg-[#e8e8e8] relative py-4 z-10">
         <div
             class="flex justify-between px-5 mx-auto h-full leading-6 text-zinc-800 container"
         >
@@ -8,14 +8,9 @@
                 <div class="flex flex-col items-start h-full text-left">
                     <Link
                         href="/"
-                        class="px-5 flex items-center flex-shrink-0 border-b border-color space-x-2"
+                        class="px-5 flex items-center flex-shrink-0 space-x-2"
                     >
                         <Logo />
-                        <!-- <div
-                            class="font-medium text-black tracking-tight text-sm"
-                        >
-                            Homexe
-                        </div> -->
                     </Link>
                 </div>
             </div>
@@ -26,7 +21,7 @@
                     class="flex flex-row items-center max-w-full border-zinc-300"
                 >
                     <nav class="block mr-4">
-                        <ul class="flex">
+                        <ul class="flex gap-4">
                             <li
                                 v-for="item in navItems"
                                 :key="item.title"
@@ -34,21 +29,25 @@
                             >
                                 <a
                                     :href="item.url"
-                                    class="flex justify-start items-center py-0 px-2 text-base font-medium tracking-wide leading-7 text-gray-500 capitalize bg-transparent border-0 border-transparent border-solid cursor-pointer hover:text-slate-400"
+                                    class="flex justify-start items-center py-0 px-2 text-sm font-medium tracking-wide leading-7 text-gray-900 hover:text-gray-700 capitalize bg-transparent border-0 border-transparent border-solid cursor-pointer"
                                 >
                                     {{ item.title }}
                                 </a>
                             </li>
                         </ul>
                     </nav>
-                    <a
-                        class="inline-block py-3 px-6 max-w-full text-sm tracking-wider text-center text-white bg-black border border-none cursor-pointer border-slate-400 hover:border-slate-400 hover:bg-gray-800"
-                        href="/#form"
-                        target="_self"
-                    >
-                        Online Quote &rarr;
-                    </a>
                 </div>
+            </div>
+
+            <!-- Online Quote Button -->
+            <div class="flex items-center">
+                <a
+                    class="inline-block py-3 px-6 max-w-full font-semibold text-sm tracking-wider text-center text-white bg-black border border-none cursor-pointer border-slate-400 hover:border-slate-400 hover:bg-gray-800"
+                    href="/#form"
+                    target="_self"
+                >
+                    Online Quote &rarr;
+                </a>
             </div>
 
             <!-- Mobile Menu Button -->

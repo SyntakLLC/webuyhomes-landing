@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[#e8e8e8] min-h-screen">
+    <div class="bg-[#e8e8e8]">
         <div
             class="relative container mx-auto px-4 md:px-6 lg:px-8 pt-20 pb-16"
         >
@@ -139,7 +139,7 @@
                     <img
                         src="../../../img/homexe-hero-house.png"
                         alt="Modern architectural house"
-                        class="w-full h-full object-contain"
+                        class="w-full h-full object-cover object-left"
                     />
 
                     <Noise />

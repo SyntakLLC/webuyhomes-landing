@@ -1,12 +1,14 @@
 <template>
     <div class="bg-[#e8e8e8] min-h-screen">
-        <div class="relative container mx-auto px-4 pt-20 pb-16">
+        <div
+            class="relative container mx-auto px-4 md:px-6 lg:px-8 pt-20 pb-16"
+        >
             <!-- Main Content -->
             <div class="flex flex-col lg:flex-row">
                 <!-- Left Column -->
-                <div class="lg:w-1/2 z-10 relative">
+                <div class="lg:w-3/4 z-10 relative">
                     <h1
-                        class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold text-gray-900 mb-6"
+                        class="text-3xl md:text-4xl tracking-tight lg:text-5xl font-bold text-gray-900 mb-6"
                     >
                         Easiest way to find<br />
                         your dream place
@@ -46,7 +48,7 @@
                         </div>
 
                         <!-- Search Form -->
-                        <div class="bg-white p-6 grid grid-cols-3 gap-8">
+                        <div class="bg-white px-6 py-4 grid grid-cols-3 gap-8">
                             <div>
                                 <label class="block text-sm text-gray-500 mb-2"
                                     >Location</label
@@ -55,7 +57,7 @@
                                     type="text"
                                     v-model="location"
                                     placeholder="Long Beach, California"
-                                    class="w-full border-none shadow-none px-0 focus:outline-none focus:ring-0"
+                                    class="w-full border-none !shadow-none px-0 focus:outline-none focus:ring-0"
                                 />
                             </div>
                             <div>
@@ -66,7 +68,7 @@
                                     type="text"
                                     v-model="startDate"
                                     placeholder="Dec 16, 10:30 PM"
-                                    class="w-full border-none shadow-none px-0 focus:outline-none focus:ring-0"
+                                    class="w-full border-none !shadow-none px-0 focus:outline-none focus:ring-0"
                                 />
                             </div>
                             <div class="relative">
@@ -77,7 +79,7 @@
                                     type="text"
                                     v-model="endDate"
                                     placeholder="Dec 16, 10:30 PM"
-                                    class="w-full border-none shadow-none px-0 focus:outline-none focus:ring-0"
+                                    class="w-full border-none !shadow-none px-0 focus:outline-none focus:ring-0"
                                 />
                                 <button
                                     class="absolute right-0 bottom-0 bg-black p-3"

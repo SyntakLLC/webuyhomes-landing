@@ -6,8 +6,16 @@
             <!-- Logo -->
             <div class="flex justify-start items-center text-zinc-800">
                 <div class="flex flex-col items-start h-full text-left">
-                    <Link href="/">
+                    <Link
+                        href="/"
+                        class="px-5 flex items-center flex-shrink-0 border-b border-color space-x-2"
+                    >
                         <Logo />
+                        <!-- <div
+                            class="font-medium text-black tracking-tight text-sm"
+                        >
+                            Homexe
+                        </div> -->
                     </Link>
                 </div>
             </div>
@@ -34,7 +42,7 @@
                         </ul>
                     </nav>
                     <a
-                        class="inline-block py-2 px-4 max-w-full text-base font-extrabold tracking-wider text-center text-white bg-black border border-none cursor-pointer border-slate-400 hover:border-slate-400 hover:bg-secondary-500 hover:text-white"
+                        class="inline-block py-3 px-6 max-w-full text-sm tracking-wider text-center text-white bg-black border border-none cursor-pointer border-slate-400 hover:border-slate-400 hover:bg-gray-800"
                         href="/#form"
                         target="_self"
                     >

@@ -19,7 +19,7 @@ export default {
     display: block;
     z-index: 5;
     opacity: 0.5;
-    /* mix-blend-mode: soft-light; */
+    mix-blend-mode: soft-light;
     /*animation: grain 400ms steps(1) infinite;*/
     height: 100%;
     width: 100%;

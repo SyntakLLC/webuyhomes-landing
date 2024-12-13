@@ -1,10 +1,16 @@
 <template>
-    <img v-if="white" alt="logo"
+    <img
+        src="../../img/homexe-logo.gif"
+        alt="logo"
+        class="flex-shrink-0 my-4 h-8 overflow-hidden rounded-lg max-w-full border-none object-contain saturate-0 contrast-[1000]"
+    />
+
+    <!-- <img v-if="white" alt="logo"
          src="../../img/white-logo.png"
          class="flex-shrink-0 mb-0 py-4 h-24 max-w-full border-none object-contain"/>
     <img v-else alt="logo"
          src="../../img/logo.webp"
-         class="flex-shrink-0 mb-0 py-4 h-24 max-w-full border-none object-contain"/>
+         class="flex-shrink-0 mb-0 py-4 h-24 max-w-full border-none object-contain"/> -->
 </template>
 
 <script>
@@ -14,12 +20,10 @@ export default {
     props: {
         white: {
             type: Boolean,
-            default: false
-        }
-    }
-}
+            default: false,
+        },
+    },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

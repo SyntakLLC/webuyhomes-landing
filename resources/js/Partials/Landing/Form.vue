@@ -56,7 +56,7 @@
                 />
                 <button
                     @click="findMatches"
-                    class="absolute right-0 bottom-0 bg-black p-3"
+                    class="absolute right-0 bottom-0 bg-homexe-black p-3"
                     :class="{ 'error-animation': showError }"
                 >
                     <svg

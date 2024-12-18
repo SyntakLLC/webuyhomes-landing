@@ -3,21 +3,9 @@
         <title>How it works</title>
     </Head>
 
-    <Header />
-
-    <div class="bg-[#e8e8e8]">
-        <div class="relative w-full h-full overflow-hidden">
-            <div
-                class="relative flex flex-col items-center container-size pt-10 pb-14 mx-auto h-full leading-6 text-center text-white"
-            >
-                <h2
-                    class="mx-0 mt-0 max-w-full text-center text-gray-900 heading-max"
-                >
-                    How it works
-                </h2>
-            </div>
-        </div>
-    </div>
+    <Header>
+        <template #title>How it works</template>
+    </Header>
 
     <div class="container-size py-12">
         <div class="grid md:grid-cols-4 gap-8 mb-12">
@@ -37,16 +25,16 @@
         </div>
 
         <div class="text-sm text-gray-600 mb-8">
-            <strong>Timeline:</strong> Once we receive your information, we are
-            usually able to present you with a fair, all-cash offer within 24
-            hours. From there, we can close as quickly as 7 days – or on your
-            schedule.
+            <strong>Timeline:</strong> After our initial consultation, our team
+            will work diligently to help you achieve your real estate goals.
+            Whether buying or selling, we'll create a customized timeline that
+            fits your needs and market conditions.
         </div>
 
         <div class="bg-gray-100 p-8 grid md:grid-cols-2 gap-8">
             <div class="space-y-4">
                 <h2 class="heading-sm text-gray-800">
-                    Contact Us Today To Get Your Offer!
+                    Contact Us Today To Start Your Journey!
                 </h2>
                 <img
                     src="../../img/house.jpeg"
@@ -60,7 +48,7 @@
         </div>
 
         <h3 class="subheading-lg text-center my-8">
-            Selling Your House Can Be A Quick And Simple Process
+            Experience Professional Real Estate Services
         </h3>
 
         <div class="grid md:grid-cols-3 gap-8 mb-12">
@@ -140,42 +128,45 @@ export default defineComponent({
     setup() {
         const steps = [
             {
-                title: "Tell us about your property",
-                description: "Contact us today and free pricing",
-            },
-            {
-                title: "If it meets our buying criteria...",
-                description: "We'll contact you to set up a quick appointment",
-            },
-            {
-                title: "We present you with a no-obligation cash offer",
-                description: "Or discuss the best method to proceed",
-            },
-            {
-                title: "We close at a local reputable title company",
+                title: "Initial Consultation",
                 description:
-                    "We can close on your house in as little as 7 days",
+                    "Meet with our expert agents to discuss your real estate goals",
+            },
+            {
+                title: "Personalized Strategy",
+                description:
+                    "We'll develop a customized plan based on your needs and market conditions",
+            },
+            {
+                title: "Professional Marketing",
+                description:
+                    "For sellers, we implement comprehensive marketing strategies. For buyers, we start the home search",
+            },
+            {
+                title: "Successful Closing",
+                description:
+                    "Expert guidance through negotiations and closing process",
             },
         ];
 
         const features = [
             {
                 icon: "HouseIcon",
-                title: "We Buy Homes AS-IS",
+                title: "Expert Market Knowledge",
                 description:
-                    "We buy houses in any condition. You don't have to worry about repairs or biz at the time of sale.",
+                    "Our agents have deep understanding of local market trends and neighborhoods to help you make informed decisions.",
             },
             {
                 icon: "CashIcon",
-                title: "Get CASH",
+                title: "Professional Service",
                 description:
-                    "We can offer you options that most investors cannot. We can pay cash, take over mortgage payments, etc.",
+                    "Comprehensive real estate services including market analysis, professional photography, and expert negotiations.",
             },
             {
                 icon: "ToolsIcon",
-                title: "No Repairs Needed",
+                title: "Full Support",
                 description:
-                    "Don't worry about repairing or cleaning up your property. We'll buy it exactly as it is, no matter how ugly or pretty it is.",
+                    "Dedicated support throughout your entire real estate journey, from initial consultation to successful closing.",
             },
         ];
 

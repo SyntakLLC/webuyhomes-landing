@@ -1,25 +1,25 @@
 <template>
     <div class="bg-white py-20 container-size space-y-8">
-        <div class="heading-lg text-center">We Buy Homes!</div>
+        <div class="heading-lg text-center">Welcome to Homexe!</div>
 
         <div class="subheading-lg text-center">
-            Need To Sell Your House Fast? Our Home Buying Process Is Simple And
-            Hassle Free. No Real Estate Agents. No Fees. No Waiting. We Even
-            Cover Closing Costs!
+            Looking to Buy or Sell Your Home? Our Real Estate Experts Are Here
+            to Help You Every Step of the Way. Professional Service. No Hidden
+            Fees. Personalized Experience.
         </div>
 
         <div class="subheading-sm font-normal">
-            At Homexe, we buy houses for cash to make your home sale simple. As
-            a company that buys homes, we understand the importance of a fast
-            cash sale. That’s why we remove the drawbacks of working with real
-            estate agents.
+            At Homexe, we are committed to providing exceptional real estate
+            services to make your home buying or selling experience seamless.
+            Our team of experienced agents understands the local market and is
+            dedicated to finding the perfect solution for your real estate
+            needs.
             <br />
             <br />
-            How would you like to be connected with a local investor in your
-            market who offers cash for houses? By filling out our form, you will
-            receive an offer from an active cash buyer who specializes in your
-            local real estate market. Come check us out and see if our cash
-            offer fits your home sale best!
+            Whether you're looking to buy your dream home or sell your property
+            at the best price, our agents are here to guide you through the
+            process. Contact us today to learn more about how we can assist you
+            in achieving your real estate goals!
         </div>
 
         <div class="flex justify-end">

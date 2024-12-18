@@ -37,20 +37,20 @@
                         id="form"
                         class="heading-lg text-white text-center mb-6"
                     >
-                        Need To Sell Your Home?
+                        Ready to Buy or Sell?
                     </h1>
                     <p class="text-white/70">
-                        If you need to sell your house fast, you can avoid the
-                        hassles of a traditional sale! Imagine having to find a
-                        real estate agent, make repairs, clean, deal with open
-                        houses and showings, and pay commission and fees on top
-                        of all the work and stress in your already busy life...
+                        Looking for a trusted partner in real estate? Our
+                        experienced agents are here to guide you through every
+                        step of your journey. Whether you're buying your dream
+                        home or selling your current property, we'll ensure a
+                        smooth and professional experience.
                     </p>
                     <p class="font-bold text-white/70">
-                        Homexe eliminates these hassles. We take the stress out
-                        of selling your home, so you can keep on living your
-                        life. Our goal is to make your home sale as simple as
-                        possible.
+                        Homexe brings expertise, dedication, and personalized
+                        service to every transaction. Let our team of
+                        professionals help you achieve your real estate goals
+                        with confidence and peace of mind.
                     </p>
                     <Form small />
                 </div>

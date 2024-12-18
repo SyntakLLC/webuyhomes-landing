@@ -2,7 +2,7 @@
     <img
         src="../../img/homexe-logo.gif"
         alt="logo"
-        class="flex-shrink-0 my-4 h-8 overflow-hidden rounded-lg max-w-full border-none object-contain saturate-0 contrast-[1000]"
+        class="flex-shrink-0 my-4 h-10 overflow-hidden p-1 bg-[#121212] max-w-full border-none object-contain saturate-0 contrast-[1000]"
     />
 
     <!-- <img v-if="white" alt="logo"

@@ -10,7 +10,8 @@
                     <h1
                         class="text-3xl md:text-4xl tracking-tight lg:text-5xl font-bold text-gray-900 mb-6"
                     >
-                        Easiest way to find<br />
+                        Easiest way to find
+                        <br />
                         your dream place
                     </h1>
 
@@ -19,114 +20,33 @@
                         various types, all over the world at affordable prices.
                     </p>
 
-                    <!-- Search Container -->
-                    <div class="">
-                        <!-- Buy/Rent Toggle -->
-                        <div class="inline-flex bg-white">
-                            <button
-                                :class="[
-                                    'px-8 py-3 font-medium transition-all border-b-2',
-                                    activeTab === 'buy'
-                                        ? 'border-black'
-                                        : 'text-gray-400 bg-gray-100 border-white',
-                                ]"
-                                @click="setTab('buy')"
-                            >
-                                Buy
-                            </button>
-                            <button
-                                :class="[
-                                    'px-8 py-3 font-medium transition-all border-b-2',
-                                    activeTab === 'rent'
-                                        ? 'border-black'
-                                        : 'text-gray-400 bg-gray-100 border-white',
-                                ]"
-                                @click="setTab('rent')"
-                            >
-                                Rent
-                            </button>
-                        </div>
+                    <!-- Replace old search with Form component -->
+                    <Form />
 
-                        <!-- Search Form -->
-                        <div class="bg-white px-6 py-4 grid grid-cols-3 gap-8">
-                            <div>
-                                <label class="block text-sm text-gray-500 mb-2"
-                                    >Location</label
-                                >
-                                <TextInput
-                                    type="text"
-                                    v-model="location"
-                                    placeholder="Long Beach, California"
-                                    class="w-full border-none !shadow-none px-0 focus:outline-none focus:ring-0"
-                                />
+                    <!-- Stats -->
+                    <div class="flex gap-16 mt-16">
+                        <div>
+                            <div class="text-3xl font-bold text-brand-600">
+                                200
                             </div>
-                            <div>
-                                <label class="block text-sm text-gray-500 mb-2"
-                                    >Start</label
-                                >
-                                <TextInput
-                                    type="text"
-                                    v-model="startDate"
-                                    placeholder="Dec 16, 10:30 PM"
-                                    class="w-full border-none !shadow-none px-0 focus:outline-none focus:ring-0"
-                                />
-                            </div>
-                            <div class="relative">
-                                <label class="block text-sm text-gray-500 mb-2"
-                                    >End</label
-                                >
-                                <TextInput
-                                    type="text"
-                                    v-model="endDate"
-                                    placeholder="Dec 16, 10:30 PM"
-                                    class="w-full border-none !shadow-none px-0 focus:outline-none focus:ring-0"
-                                />
-                                <button
-                                    class="absolute right-0 bottom-0 bg-black p-3"
-                                >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="h-5 w-5 text-white"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                                        />
-                                    </svg>
-                                </button>
+                            <div class="text-gray-500 text-sm mt-1">
+                                Award<br />Winning
                             </div>
                         </div>
-
-                        <!-- Stats -->
-                        <div class="flex gap-16 mt-16">
-                            <div>
-                                <div class="text-3xl font-bold text-brand-600">
-                                    200
-                                </div>
-                                <div class="text-gray-500 text-sm mt-1">
-                                    Award<br />Winning
-                                </div>
+                        <div>
+                            <div class="text-3xl font-bold text-brand-600">
+                                500+
                             </div>
-                            <div>
-                                <div class="text-3xl font-bold text-brand-600">
-                                    500+
-                                </div>
-                                <div class="text-gray-500 text-sm mt-1">
-                                    Happy<br />Costumer
-                                </div>
+                            <div class="text-gray-500 text-sm mt-1">
+                                Happy<br />Costumer
                             </div>
-                            <div>
-                                <div class="text-3xl font-bold text-brand-600">
-                                    100+
-                                </div>
-                                <div class="text-gray-500 text-sm mt-1">
-                                    Property<br />Ready
-                                </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-brand-600">
+                                100+
+                            </div>
+                            <div class="text-gray-500 text-sm mt-1">
+                                Property<br />Ready
                             </div>
                         </div>
                     </div>
@@ -183,27 +103,14 @@
 </template>
 
 <script>
-import TextInput from "@/Components/TextInput.vue";
+import Form from "@/Partials/Landing/Form.vue";
 import Noise from "@/Components/Decoration/Noise.vue";
 
 export default {
     name: "Hero",
     components: {
-        TextInput,
+        Form,
         Noise,
-    },
-    data() {
-        return {
-            activeTab: "buy",
-            location: "",
-            startDate: "",
-            endDate: "",
-        };
-    },
-    methods: {
-        setTab(tab) {
-            this.activeTab = tab;
-        },
     },
 };
 </script>

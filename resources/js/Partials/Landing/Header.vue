@@ -1,11 +1,18 @@
 <template>
-    <div class="bg-[#e8e8e8] relative z-10">
-        <div class="bg-[#e8e8e8] relative py-4 z-10">
+    <div class="relative z-10">
+        <div
+            :class="[
+                'relative py-4 z-10',
+                $slots.title ? 'bg-homexe-black dark' : 'bg-[#e8e8e8]',
+            ]"
+        >
             <div
                 class="flex justify-between px-5 mx-auto h-full leading-6 text-zinc-800 container"
             >
                 <!-- Logo -->
-                <div class="flex justify-start items-center text-zinc-800">
+                <div
+                    class="flex justify-start items-center text-zinc-800 md:w-[165px]"
+                >
                     <div class="flex flex-col items-start h-full text-left">
                         <Link
                             href="/"
@@ -32,7 +39,7 @@
                                 >
                                     <a
                                         :href="item.url"
-                                        class="flex justify-start items-center py-0 px-2 text-sm font-medium tracking-wide leading-7 text-gray-900 hover:text-gray-700 capitalize bg-transparent border-0 border-transparent border-solid cursor-pointer"
+                                        class="flex justify-start items-center py-0 px-2 text-sm font-medium tracking-wide leading-7 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300 capitalize bg-transparent border-0 border-transparent border-solid cursor-pointer"
                                     >
                                         {{ item.title }}
                                     </a>
@@ -43,7 +50,7 @@
                 </div>
 
                 <!-- Online Quote Button -->
-                <div class="flex items-center">
+                <div class="flex items-center w-[165px]">
                     <a
                         class="inline-block py-3 px-6 max-w-full font-semibold text-sm tracking-wider text-center text-white bg-homexe-black border border-none cursor-pointer border-slate-400 hover:border-slate-400 hover:bg-gray-800"
                         href="/#form"
@@ -134,13 +141,13 @@
             </transition>
         </div>
 
-        <div v-if="$slots.title" class="bg-[#e8e8e8]">
+        <div v-if="$slots.title" class="bg-homexe-black">
             <div class="relative w-full h-full overflow-hidden">
                 <div
-                    class="relative flex flex-col items-center container-size pt-10 pb-14 mx-auto h-full leading-6 text-center text-white"
+                    class="relative flex flex-col container-size py-14 mx-auto h-full leading-6"
                 >
                     <h2
-                        class="mx-0 mt-0 max-w-full text-center text-gray-900 heading-lg"
+                        class="mx-0 mt-0 max-w-full text-left text-white heading-lg"
                     >
                         <slot name="title" />
                     </h2>

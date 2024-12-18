@@ -115,6 +115,8 @@
             <Form small />
         </div>
     </div>
+
+    <Footer />
 </template>
 
 <script>
@@ -122,6 +124,7 @@ import { defineComponent } from "vue";
 import Form from "@/Partials/Landing/Form.vue";
 import { Link, Head } from "@inertiajs/vue3";
 import Header from "@/Partials/Landing/Header.vue";
+import Footer from "@/Partials/Landing/Footer.vue";
 
 const ClockIcon = {
     template: `
@@ -157,6 +160,7 @@ export default defineComponent({
         CashIcon,
         Link,
         Head,
+        Footer,
     },
     setup() {
         const comparisonData = [

@@ -82,6 +82,8 @@
             </Link>
         </div>
     </div>
+
+    <Footer />
 </template>
 
 <script>
@@ -89,6 +91,7 @@ import { defineComponent } from "vue";
 import { Link, Head } from "@inertiajs/vue3";
 import Form from "@/Partials/Landing/Form.vue";
 import Header from "@/Partials/Landing/Header.vue";
+import Footer from "@/Partials/Landing/Footer.vue";
 
 const HouseIcon = {
     template: `
@@ -124,6 +127,7 @@ export default defineComponent({
         ToolsIcon,
         Link,
         Head,
+        Footer,
     },
     setup() {
         const steps = [

@@ -1,9 +1,11 @@
 <template>
-    <img
-        src="../../img/homexe-logo.gif"
-        alt="logo"
-        class="flex-shrink-0 my-4 h-10 overflow-hidden p-1 bg-homexe-black max-w-full border-none object-contain saturate-0 contrast-[1000]"
-    />
+    <div class="flex justify-center items-center p-1 bg-homexe-black h-12 w-12">
+        <img
+            src="../../img/homexe-logo.gif"
+            alt="logo"
+            class="flex-shrink-0 my-4 h-10 overflow-hidden max-w-full border-none object-contain saturate-0 contrast-[1000]"
+        />
+    </div>
 
     <!-- <img v-if="white" alt="logo"
          src="../../img/white-logo.png"

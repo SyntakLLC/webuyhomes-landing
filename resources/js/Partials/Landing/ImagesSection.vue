@@ -1,6 +1,6 @@
 <template>
-    <div class="bg-brand-500 -skew-y-[1.5deg]">
-        <div class="skew-y-[1.5deg] container-size py-12">
+    <div class="bg-brand-500">
+        <div class="container-size py-16">
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Images section -->
                 <div class="order-2 md:order-1">

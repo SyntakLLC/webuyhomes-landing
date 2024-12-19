@@ -1,10 +1,8 @@
 <template>
     <div class="bg-[#e8e8e8]">
-        <div
-            class="relative container mx-auto px-4 md:px-6 lg:px-8 pt-20 pb-16"
-        >
+        <div class="relative mx-auto px-4 md:px-6 lg:px-8 pt-20 pb-16">
             <!-- Main Content -->
-            <div class="flex flex-col lg:flex-row">
+            <div class="flex flex-col container mx-auto lg:flex-row">
                 <!-- Left Column -->
                 <div class="lg:w-3/4 z-10 relative">
                     <h1
@@ -16,8 +14,9 @@
                     </h1>
 
                     <p class="text-gray-600 text-lg max-w-md mb-12">
-                        this is where you can find a dream place for you of
-                        various types, all over the world at affordable prices.
+                        Your trusted partner in finding the perfect home. We'll
+                        help you navigate every step of your real estate
+                        journey.
                     </p>
 
                     <!-- Replace old search with Form component -->

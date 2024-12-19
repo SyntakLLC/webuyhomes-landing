@@ -1,12 +1,12 @@
 <template>
     <Head>
-        <title>Sell your place</title>
+        <title>Real Estate</title>
     </Head>
 
     <Header />
     <Hero />
     <Section1 />
-    <Nationwide />
+    <!-- <Nationwide /> -->
     <Section2 />
     <ImagesSection />
     <StepByStep />

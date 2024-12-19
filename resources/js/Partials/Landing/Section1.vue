@@ -21,10 +21,10 @@
             process. Contact us today to learn more about how we can assist you
             in achieving your real estate goals!
         </div>
-
+        <!-- 
         <div class="flex justify-end">
             <Logo />
-        </div>
+        </div> -->
     </div>
 </template>
 

@@ -163,7 +163,7 @@
                 </div>
 
                 <button
-                    class="mt-8 bg-secondary-600 text-white px-6 py-3 rounded-size font-bold hover:bg-secondary-500 transition-colors"
+                    class="mt-8 bg-black text-white px-6 py-3 rounded-size font-bold hover:bg-secondary-500 transition-colors"
                 >
                     Learn More
                 </button>

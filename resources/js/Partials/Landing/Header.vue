@@ -132,7 +132,7 @@
                         </nav>
                         <a
                             href="/#form"
-                            class="block mt-6 py-2 px-4 text-lg font-extrabold text-center text-white bg-secondary-600 rounded-lg hover:bg-secondary-500"
+                            class="block mt-6 py-2 px-4 text-lg font-extrabold text-center text-white bg-black rounded-lg hover:bg-secondary-500"
                         >
                             Online Quote &rarr;
                         </a>
@@ -147,7 +147,7 @@
                     class="relative flex flex-col container-size py-14 mx-auto h-full leading-6"
                 >
                     <h2
-                        class="mx-0 mt-0 max-w-full text-left text-white heading-lg"
+                        class="mx-0 mt-0 max-w-full text-left text-white heading-max"
                     >
                         <slot name="title" />
                     </h2>

@@ -12,7 +12,7 @@
                 :class="[
                     selectedBuyingIntention === option.value
                         ? 'bg-secondary-100 border-secondary-500'
-                        : 'bg-white hover:bg-gray-50 border-gray-200'
+                        : 'bg-white hover:bg-gray-50 border-gray-200',
                 ]"
             >
                 <div class="flex items-center">
@@ -21,7 +21,7 @@
                         :class="[
                             selectedBuyingIntention === option.value
                                 ? 'border-secondary-500'
-                                : 'border-gray-300'
+                                : 'border-gray-300',
                         ]"
                     >
                         <div
@@ -30,8 +30,12 @@
                         ></div>
                     </div>
                     <div>
-                        <h3 class="font-semibold text-lg">{{ option.label }}</h3>
-                        <p class="text-sm text-gray-600">{{ option.description }}</p>
+                        <h3 class="font-semibold text-lg">
+                            {{ option.label }}
+                        </h3>
+                        <p class="text-sm text-gray-600">
+                            {{ option.description }}
+                        </p>
                     </div>
                 </div>
             </button>
@@ -45,7 +49,7 @@
             </button>
             <button
                 @click="nextStep"
-                class="bg-secondary-600 hover:bg-secondary-500 text-xl tracking-wide font-semibold uppercase text-white px-4 pt-3 pb-4 w-full font-display text-center rounded-lg transition-colors duration-200 ease-in-out"
+                class="bg-black hover:bg-secondary-500 text-xl tracking-wide font-semibold uppercase text-white px-4 pt-3 pb-4 w-full font-display text-center rounded-lg transition-colors duration-200 ease-in-out"
             >
                 Next
             </button>
@@ -54,7 +58,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref } from "vue";
 import DrawerFormLayout from "@/Layouts/DrawerFormLayout.vue";
 
 export default {
@@ -62,30 +66,30 @@ export default {
     components: {
         DrawerFormLayout,
     },
-    emits: ['next', 'back'],
+    emits: ["next", "back"],
     setup(props, { emit }) {
         const selectedBuyingIntention = ref(null);
 
         const buyingOptions = [
             {
-                value: 'yes',
-                label: 'Yes',
-                description: 'I plan to buy a home after selling',
+                value: "yes",
+                label: "Yes",
+                description: "I plan to buy a home after selling",
             },
             {
-                value: 'no',
-                label: 'No',
-                description: 'I don\'t plan to buy a home after selling',
+                value: "no",
+                label: "No",
+                description: "I don't plan to buy a home after selling",
             },
             {
-                value: 'maybe',
-                label: 'Maybe',
-                description: 'I\'m not sure yet',
+                value: "maybe",
+                label: "Maybe",
+                description: "I'm not sure yet",
             },
             {
-                value: 'already_own',
-                label: 'Already own another home',
-                description: 'I already have another property',
+                value: "already_own",
+                label: "Already own another home",
+                description: "I already have another property",
             },
         ];
 
@@ -95,12 +99,14 @@ export default {
 
         const nextStep = () => {
             if (selectedBuyingIntention.value) {
-                emit('next', { buyingIntention: selectedBuyingIntention.value });
+                emit("next", {
+                    buyingIntention: selectedBuyingIntention.value,
+                });
             }
         };
 
         const goBack = () => {
-            emit('back');
+            emit("back");
         };
 
         return {
@@ -111,5 +117,5 @@ export default {
             goBack,
         };
     },
-}
+};
 </script>

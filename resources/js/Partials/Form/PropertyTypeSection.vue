@@ -12,7 +12,7 @@
                 :class="[
                     selectedPropertyType === option.value
                         ? 'bg-secondary-100 border-secondary-500'
-                        : 'bg-white hover:bg-gray-50 border-gray-200'
+                        : 'bg-white hover:bg-gray-50 border-gray-200',
                 ]"
             >
                 <div class="flex items-center">
@@ -21,7 +21,7 @@
                         :class="[
                             selectedPropertyType === option.value
                                 ? 'border-secondary-500'
-                                : 'border-gray-300'
+                                : 'border-gray-300',
                         ]"
                     >
                         <div
@@ -30,8 +30,12 @@
                         ></div>
                     </div>
                     <div>
-                        <h3 class="font-semibold text-lg">{{ option.label }}</h3>
-                        <p class="text-sm text-gray-600">{{ option.description }}</p>
+                        <h3 class="font-semibold text-lg">
+                            {{ option.label }}
+                        </h3>
+                        <p class="text-sm text-gray-600">
+                            {{ option.description }}
+                        </p>
                     </div>
                 </div>
             </button>
@@ -39,7 +43,7 @@
         <div class="mt-6">
             <button
                 @click="nextStep"
-                class="bg-secondary-600 hover:bg-secondary-500 text-xl tracking-wide font-semibold uppercase text-white px-4 pt-3 pb-4 w-full font-display text-center rounded-lg transition-colors duration-200 ease-in-out"
+                class="bg-black hover:bg-secondary-500 text-xl tracking-wide font-semibold uppercase text-white px-4 pt-3 pb-4 w-full font-display text-center rounded-lg transition-colors duration-200 ease-in-out"
             >
                 Next
             </button>
@@ -48,7 +52,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref } from "vue";
 import DrawerFormLayout from "@/Layouts/DrawerFormLayout.vue";
 
 export default {
@@ -56,40 +60,41 @@ export default {
     components: {
         DrawerFormLayout,
     },
-    emits: ['next'],
+    emits: ["next"],
     setup(props, { emit }) {
         const selectedPropertyType = ref(null);
 
         const propertyTypeOptions = [
             {
-                value: 'singleFamily',
-                label: 'Single Family',
-                description: 'A standalone house for one family',
+                value: "singleFamily",
+                label: "Single Family",
+                description: "A standalone house for one family",
             },
             {
-                value: 'multiFamily',
-                label: 'Multi Family',
-                description: 'A building with multiple separate living units',
+                value: "multiFamily",
+                label: "Multi Family",
+                description: "A building with multiple separate living units",
             },
             {
-                value: 'condo',
-                label: 'Condo',
-                description: 'An individually owned unit in a larger complex',
+                value: "condo",
+                label: "Condo",
+                description: "An individually owned unit in a larger complex",
             },
             {
-                value: 'townhouse',
-                label: 'Townhouse',
-                description: 'A multi-floor home that shares walls with other units',
+                value: "townhouse",
+                label: "Townhouse",
+                description:
+                    "A multi-floor home that shares walls with other units",
             },
             {
-                value: 'mobile',
-                label: 'Mobile / Manufactured',
-                description: 'A prefabricated home built in a factory',
+                value: "mobile",
+                label: "Mobile / Manufactured",
+                description: "A prefabricated home built in a factory",
             },
             {
-                value: 'land',
-                label: 'Land',
-                description: 'An undeveloped or vacant plot of land',
+                value: "land",
+                label: "Land",
+                description: "An undeveloped or vacant plot of land",
             },
         ];
 
@@ -99,7 +104,7 @@ export default {
 
         const nextStep = () => {
             if (selectedPropertyType.value) {
-                emit('next', { propertyType: selectedPropertyType.value });
+                emit("next", { propertyType: selectedPropertyType.value });
             }
         };
 
@@ -110,5 +115,5 @@ export default {
             nextStep,
         };
     },
-}
+};
 </script>

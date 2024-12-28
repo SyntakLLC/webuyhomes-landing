@@ -22,23 +22,13 @@
                 class="text-center"
             >
                 <div class="flex justify-center mb-4">
-                    <svg
+                    <component
+                        :is="step.icon"
                         class="w-12 h-12 text-brand-500"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                        ></path>
-                    </svg>
+                    />
                 </div>
                 <h3 class="subheading-sm mb-2">STEP {{ index + 1 }}</h3>
-                <p>{{ step }}</p>
+                <p>{{ step.text }}</p>
             </div>
         </div>
 
@@ -120,14 +110,30 @@
 </template>
 
 <script>
+import { Users, LineChart, CheckCircle } from "lucide-vue-next";
+
 export default {
     name: "StepByStep",
+    components: {
+        Users,
+        LineChart,
+        CheckCircle,
+    },
     data() {
         return {
             steps: [
-                "Meet with one of our expert agents to discuss your real estate goals and create a customized strategy.",
-                "Receive professional guidance on pricing, staging, or home search based on market analysis and your needs.",
-                "Experience a smooth transaction process with dedicated support from listing to closing.",
+                {
+                    text: "Meet with one of our expert agents to discuss your real estate goals and create a customized strategy.",
+                    icon: "Users",
+                },
+                {
+                    text: "Receive professional guidance on pricing, staging, or home search based on market analysis and your needs.",
+                    icon: "LineChart",
+                },
+                {
+                    text: "Experience a smooth transaction process with dedicated support from listing to closing.",
+                    icon: "CheckCircle",
+                },
             ],
             benefits: [
                 "Expert market analysis and pricing strategies",

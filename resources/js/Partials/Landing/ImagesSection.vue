@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-brand-500">
+    <div id="form" class="bg-brand-500">
         <div class="container-size py-16">
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Images section -->
@@ -26,17 +26,14 @@
                             class="w-full h-48 object-cover rounded-size"
                         />
                     </div>
-                    <div class="flex justify-center">
+                    <div class="flex mt-2 justify-center">
                         <Logo />
                     </div>
                 </div>
 
                 <!-- Content section -->
                 <div class="space-y-6 order-1 md:order-2">
-                    <h1
-                        id="form"
-                        class="heading-lg text-white text-center mb-6"
-                    >
+                    <h1 class="heading-lg text-white text-center mb-6">
                         Ready to Buy or Sell?
                     </h1>
                     <p class="text-white/70">
@@ -52,9 +49,10 @@
                         professionals help you achieve your real estate goals
                         with confidence and peace of mind.
                     </p>
-                    <Form small />
                 </div>
             </div>
+
+            <Form small />
         </div>
     </div>
 </template>

@@ -26,10 +26,10 @@
                     <div class="flex gap-16 mt-16">
                         <div>
                             <div class="text-3xl font-bold text-brand-600">
-                                200
+                                200+
                             </div>
                             <div class="text-gray-500 text-sm mt-1">
-                                Award<br />Winning
+                                5 Star<br />Reviews
                             </div>
                         </div>
                         <div>
@@ -37,7 +37,7 @@
                                 500+
                             </div>
                             <div class="text-gray-500 text-sm mt-1">
-                                Happy<br />Costumer
+                                Happy<br />Customers
                             </div>
                         </div>
                         <div>
@@ -45,7 +45,7 @@
                                 100+
                             </div>
                             <div class="text-gray-500 text-sm mt-1">
-                                Property<br />Ready
+                                Properties<br />Ready
                             </div>
                         </div>
                     </div>

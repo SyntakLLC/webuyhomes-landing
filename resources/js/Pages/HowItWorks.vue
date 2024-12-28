@@ -31,23 +31,23 @@
             fits your needs and market conditions.
         </div>
 
-        <div class="bg-gray-100 p-8 grid md:grid-cols-2 gap-8">
+        <div class="bg-gray-100 p-8 grid md:grid-cols-1 gap-8">
             <div class="space-y-4">
                 <h2 class="heading-sm text-gray-800">
                     Contact Us Today To Start Your Journey!
                 </h2>
-                <img
+                <!-- <img
                     src="../../img/house.jpeg"
                     alt="House"
                     class="w-full h-auto"
-                />
+                /> -->
             </div>
             <div>
                 <Form small />
             </div>
         </div>
 
-        <h3 class="subheading-lg text-center my-8">
+        <h3 class="heading-lg text-center my-8">
             Experience Professional Real Estate Services
         </h3>
 
@@ -75,7 +75,7 @@
         <div class="text-center">
             <Link href="/">
                 <button
-                    class="bg-secondary-600 text-white px-6 py-3 font-semibold hover:bg-secondary-500 transition duration-300"
+                    class="bg-black text-white px-6 py-3 font-semibold hover:bg-secondary-500 transition duration-300"
                 >
                     Back to home
                 </button>

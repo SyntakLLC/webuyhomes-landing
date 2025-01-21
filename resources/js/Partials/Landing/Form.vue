@@ -1,10 +1,10 @@
 <template>
-    <div class="mt-4 px-6 py-8">
+    <div class="mt-4 py-8">
         <!-- Buy/Sell Toggle -->
-        <div class="inline-flex bg-white">
+        <div class="inline-flex bg-white w-full sm:w-auto">
             <button
                 :class="[
-                    'px-8 py-3 font-medium transition-all border-b-2',
+                    'flex-1 sm:flex-none px-4 sm:px-8 py-3 font-medium transition-all border-b-2',
                     activeTab === 'buy'
                         ? 'border-black'
                         : 'text-gray-400 bg-gray-100 border-white',
@@ -15,7 +15,7 @@
             </button>
             <button
                 :class="[
-                    'px-8 py-3 font-medium transition-all border-b-2',
+                    'flex-1 sm:flex-none px-4 sm:px-8 py-3 font-medium transition-all border-b-2',
                     activeTab === 'sell'
                         ? 'border-black'
                         : 'text-gray-400 bg-gray-100 border-white',
@@ -27,41 +27,51 @@
         </div>
 
         <!-- Search Form -->
-        <div class="bg-white px-6 py-4 grid grid-cols-3 gap-8">
+        <div
+            class="bg-white px-3 sm:px-6 py-4 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8"
+        >
             <div>
                 <label class="block text-sm text-gray-500 mb-2">Location</label>
                 <GoogleAutocomplete
                     v-model="form.propertyAddress"
-                    placeholder="Long Beach, California"
+                    :placeholder="
+                        activeTab === 'sell'
+                            ? '123 Main St, Boston, MA'
+                            : 'Long Beach, California'
+                    "
                     :inputClass="'w-full border-none !shadow-none px-0 focus:outline-none focus:ring-0'"
                     @place_changed="handlePlaceChanged"
                 />
             </div>
-            <div>
-                <label class="block text-sm text-gray-500 mb-2">Start</label>
-                <TextInput
-                    type="text"
-                    v-model="startDate"
-                    placeholder="Dec 16, 10:30 PM"
-                    class="w-full border-none !shadow-none px-0 focus:outline-none focus:ring-0"
-                />
-            </div>
             <div class="relative">
-                <label class="block text-sm text-gray-500 mb-2">End</label>
-                <TextInput
-                    type="text"
-                    v-model="endDate"
-                    placeholder="Dec 16, 10:30 PM"
-                    class="w-full border-none !shadow-none px-0 focus:outline-none focus:ring-0"
-                />
+                <label class="block text-sm text-gray-500 mb-2">Urgency</label>
+                <select
+                    v-model="form.timeframe"
+                    class="w-full cursor-pointer border-none !shadow-none px-0 focus:outline-none focus:ring-0 text-gray-900"
+                >
+                    <option value="" disabled selected>Select timeframe</option>
+                    <option
+                        v-for="option in timeframeOptions"
+                        :key="option.value"
+                        :value="option.value"
+                    >
+                        {{ option.label }}
+                    </option>
+                </select>
                 <button
                     @click="findMatches"
-                    class="absolute right-0 bottom-0 bg-homexe-black p-3"
+                    class="absolute right-0 bottom-0 bg-homexe-black p-2 sm:p-3"
                     :class="{ 'error-animation': showError }"
                 >
+                    <span
+                        v-if="errorMessage"
+                        class="absolute whitespace-nowrap right-full mr-2 text-sm text-red-600"
+                    >
+                        {{ errorMessage }}
+                    </span>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5 text-white"
+                        class="h-4 w-4 sm:h-5 sm:w-5 text-white"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -79,11 +89,6 @@
 
         <!-- Multi-page form in BottomDrawer -->
         <BottomDrawer :show="showMultiPageForm" @close="closeMultiPageForm">
-            <TimeframeSection
-                v-if="currentStep === 'timeframe'"
-                @next="handleTimeframeNext"
-                @back="handleBack"
-            />
             <PreviousSaleSection
                 v-if="currentStep === 'previousSale'"
                 @next="handlePreviousSaleNext"
@@ -159,11 +164,12 @@ export default {
     data() {
         return {
             showMultiPageForm: false,
-            currentStep: "timeframe",
+            currentStep: "previousSale",
             verificationCode: "",
             addressError: "",
             showError: false,
             buttonText: "Find Matches",
+            errorMessage: "",
             form: useForm({
                 propertyAddress: "",
                 phone: "",
@@ -178,28 +184,53 @@ export default {
             }),
             contactInfoSectionRef: null,
             activeTab: "buy",
-            startDate: "",
-            endDate: "",
+            timeframeOptions: [
+                {
+                    value: "asap",
+                    label: "As soon as possible",
+                },
+                {
+                    value: "1-3months",
+                    label: "1-3 months",
+                },
+                {
+                    value: "3-6months",
+                    label: "3-6 months",
+                },
+                {
+                    value: "noRush",
+                    label: "No rush",
+                },
+            ],
         };
     },
     methods: {
         async findMatches() {
-            if (this.form.propertyAddress.trim()) {
-                try {
-                    await this.getEstimatedValue();
-                    this.showMultiPageForm = true;
-                } catch (error) {
-                    console.error("Error getting estimated value:", error);
-                    // Still show the form even if the estimate fails
-                    this.showMultiPageForm = true;
-                }
-            } else {
+            // Reset error states
+            this.showError = false;
+            this.errorMessage = "";
+
+            // Validate both fields
+            if (!this.form.propertyAddress.trim() || !this.form.timeframe) {
                 this.showError = true;
-                this.buttonText = "Address Required";
+                this.errorMessage = !this.form.propertyAddress.trim()
+                    ? "Address Required"
+                    : "Timeframe Required";
+
                 setTimeout(() => {
                     this.showError = false;
-                    this.buttonText = "Find Matches";
+                    this.errorMessage = "";
                 }, 1000);
+                return;
+            }
+
+            try {
+                // await this.getEstimatedValue();
+                this.showMultiPageForm = true;
+            } catch (error) {
+                console.error("Error getting estimated value:", error);
+                // Still show the form even if the estimate fails
+                this.showMultiPageForm = true;
             }
         },
 

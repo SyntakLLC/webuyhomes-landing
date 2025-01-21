@@ -132,7 +132,7 @@
                         </nav>
                         <a
                             href="/#form"
-                            class="block mt-6 py-2 px-4 text-lg font-extrabold text-center text-white bg-black rounded-lg hover:bg-secondary-500"
+                            class="block mt-6 py-2 px-4 text-lg font-extrabold text-center text-white bg-black hover:bg-secondary-500"
                         >
                             Online Quote &rarr;
                         </a>

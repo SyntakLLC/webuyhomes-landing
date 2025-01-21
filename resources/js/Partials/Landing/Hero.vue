@@ -4,12 +4,12 @@
             <!-- Main Content -->
             <div class="flex flex-col container mx-auto lg:flex-row">
                 <!-- Left Column -->
-                <div class="lg:w-3/4 z-10 relative">
+                <div class="lg:w-3/4 z-[1] relative">
                     <h1
                         class="text-3xl md:text-4xl tracking-tight lg:text-5xl font-bold text-gray-900 mb-6"
                     >
                         Easiest way to find
-                        <br />
+                        <br class="hidden sm:block" />
                         your dream place
                     </h1>
 
@@ -23,7 +23,9 @@
                     <Form />
 
                     <!-- Stats -->
-                    <div class="flex gap-16 mt-16">
+                    <div
+                        class="flex flex-wrap gap-8 justify-between lg:justify-start md:gap-16 mt-16"
+                    >
                         <div>
                             <div class="text-3xl font-bold text-brand-600">
                                 200+
@@ -53,12 +55,12 @@
 
                 <!-- Right Column - Image -->
                 <div
-                    class="lg:w-7/12 absolute right-0 top-0 h-full pointer-events-none select-none"
+                    class="lg:w-7/12 lg:absolute hidden lg:block mt-8 lg:mt-0 right-0 top-0 h-[300px] lg:h-full pointer-events-none select-none"
                 >
                     <img
                         src="../../../img/homexe-hero-house.png"
                         alt="Modern architectural house"
-                        class="w-full h-full object-cover object-left"
+                        class="w-full h-full object-cover object-center lg:object-left"
                     />
 
                     <Noise />

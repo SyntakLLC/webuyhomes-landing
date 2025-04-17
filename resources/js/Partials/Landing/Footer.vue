@@ -1,8 +1,8 @@
 <template>
-    <footer class="bg-homexe-black text-white py-8 md:py-16">
+    <footer class="py-8 text-white bg-homexe-black md:py-16">
         <div class="">
             <div
-                class="container-size flex flex-col md:flex-row justify-between"
+                class="flex flex-col justify-between container-size md:flex-row"
             >
                 <div class="mb-6 md:mb-0">
                     <p class="mb-4">
@@ -13,14 +13,20 @@
                         and achieve your real estate goals.
                     </p>
                     <div class="mb-4">
-                        <h3 class="font-bold mb-2">Contact Us!</h3>
+                        <h3 class="mb-2 font-bold">Contact Us!</h3>
                         <p>Homexe</p>
                         <p>+1 855-781-HOME</p>
                     </div>
-                    <Logo white class="w-24 h-24" />
+                    <div class="flex items-center justify-center w-full gap-4">
+                        <!-- <Logo white class="w-24 h-24" /> -->
+                        <img
+                            src="../../../img/equal-opportunity.svg"
+                            class="w-24 h-24 invert"
+                        />
+                    </div>
                 </div>
             </div>
-            <div class="container-size mt-8 text-sm">
+            <div class="w-full text-sm text-center container-size">
                 © {{ currentYear }} Homexe
             </div>
         </div>

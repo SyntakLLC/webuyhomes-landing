@@ -9,16 +9,16 @@
                 { 'opacity-50': showVerificationForm },
             ]"
         >
-            <div class="col-span-2 flex flex-col items-start">
+            <div class="flex flex-col items-start col-span-2">
                 <InputLabel>Property Address</InputLabel>
                 <TextInput
                     v-model="formData.propertyAddress"
                     type="text"
-                    class="text-sm w-full"
+                    class="w-full text-sm"
                     placeholder="405 Main St"
                 />
             </div>
-            <div class="col-span-1 flex flex-col items-start">
+            <div class="flex flex-col items-start col-span-1">
                 <InputLabel>Phone</InputLabel>
                 <TextInput
                     v-model="formData.phone"
@@ -27,7 +27,7 @@
                     placeholder="123 456 7890"
                 />
             </div>
-            <div class="col-span-1 flex flex-col items-start">
+            <div class="flex flex-col items-start col-span-1">
                 <InputLabel>Email</InputLabel>
                 <TextInput
                     v-model="formData.email"
@@ -48,7 +48,7 @@
                 {{ verificationMessage }}
             </div>
 
-            <div class="col-span-2 text-gray-500 text-xs">
+            <div class="col-span-2 text-xs text-gray-500">
                 By clicking below, you agree to receive calls and texts,
                 including by autodialer, prerecorded messages, and artificial
                 voice, and email from Homexe or one of its partners but not as a
@@ -57,16 +57,16 @@
                 may apply.
             </div>
 
-            <div class="mt-6 md:col-span-2 flex gap-4">
+            <div class="flex w-full col-span-2 gap-4 mt-6">
                 <button
                     @click="goBack"
-                    class="bg-white border border-gray-300 hover:bg-gray-50 text-xl tracking-wide font-semibold uppercase text-gray-700 px-4 pt-3 pb-4 w-full font-display text-center rounded-lg transition-colors duration-200 ease-in-out"
+                    class="w-full px-4 pt-3 pb-4 text-xl font-semibold tracking-wide text-center text-gray-700 uppercase transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded-lg hover:bg-gray-50 font-display"
                 >
                     Back
                 </button>
                 <button
                     @click="submitForm"
-                    class="bg-black hover:bg-secondary-500 text-xl tracking-wide font-semibold uppercase text-white px-4 pt-3 pb-4 w-full font-display text-center rounded-lg transition-colors duration-200 ease-in-out"
+                    class="w-full px-4 pt-3 pb-4 text-xl font-semibold tracking-wide text-center text-white uppercase transition-colors duration-200 ease-in-out bg-black rounded-lg hover:bg-secondary-500 font-display"
                 >
                     Get My Cash Offer
                 </button>
@@ -81,7 +81,7 @@
                     <TextInput
                         v-model="formData.enteredVerificationCode"
                         type="text"
-                        class="text-sm w-full"
+                        class="w-full text-sm"
                         placeholder="Enter your verification code"
                     />
                 </div>
@@ -100,7 +100,7 @@
                 <div>
                     <button
                         @click="verifyCode"
-                        class="bg-black hover:bg-secondary-500 text-xl tracking-wide font-semibold uppercase text-white px-4 pt-3 pb-4 w-full font-display text-center rounded-lg transition-colors duration-200 ease-in-out"
+                        class="w-full px-4 pt-3 pb-4 text-xl font-semibold tracking-wide text-center text-white uppercase transition-colors duration-200 ease-in-out bg-black rounded-lg hover:bg-secondary-500 font-display"
                     >
                         Verify Code
                     </button>

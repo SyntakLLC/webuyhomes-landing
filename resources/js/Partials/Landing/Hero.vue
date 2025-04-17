@@ -1,36 +1,48 @@
 <template>
     <div class="bg-[#e8e8e8]">
-        <div class="relative mx-auto px-4 md:px-6 lg:px-8 pt-20 pb-16">
+        <div
+            class="relative px-4 pt-10 pb-10 mx-auto md:px-6 lg:px-8 md:pt-20 md:pb-16"
+        >
             <!-- Main Content -->
-            <div class="flex flex-col container mx-auto lg:flex-row">
+            <div class="container flex flex-col mx-auto lg:flex-row">
                 <!-- Left Column -->
                 <div class="lg:w-3/4 z-[1] relative">
                     <h1
-                        class="text-3xl md:text-4xl tracking-tight lg:text-5xl font-bold text-gray-900 mb-6"
+                        class="mb-4 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl lg:text-5xl md:mb-6"
                     >
                         Easiest way to find
                         <br class="hidden sm:block" />
                         your dream place
                     </h1>
 
-                    <p class="text-gray-600 text-lg max-w-md mb-12">
+                    <p class="max-w-md mb-6 text-lg text-gray-600 md:mb-12">
                         Your trusted partner in finding the perfect home. We'll
                         help you navigate every step of your real estate
                         journey.
                     </p>
 
-                    <!-- Replace old search with Form component -->
+                    <!-- Mobile Image - Only visible on mobile -->
+                    <div
+                        class="relative block z-[-1] -mb-12 overflow-hidden rounded-lg lg:hidden"
+                    >
+                        <img
+                            src="../../../img/homexe-hero-house.png"
+                            alt="Modern architectural house"
+                            class="object-cover object-center w-full h-full"
+                        />
+                    </div>
+
                     <Form />
 
                     <!-- Stats -->
                     <div
-                        class="flex flex-wrap gap-8 justify-between lg:justify-start md:gap-16 mt-16"
+                        class="flex flex-wrap justify-between gap-8 mt-10 lg:justify-start md:gap-16 md:mt-16"
                     >
                         <div>
                             <div class="text-3xl font-bold text-brand-600">
                                 200+
                             </div>
-                            <div class="text-gray-500 text-sm mt-1">
+                            <div class="mt-1 text-sm text-gray-500">
                                 5 Star<br />Reviews
                             </div>
                         </div>
@@ -38,7 +50,7 @@
                             <div class="text-3xl font-bold text-brand-600">
                                 500+
                             </div>
-                            <div class="text-gray-500 text-sm mt-1">
+                            <div class="mt-1 text-sm text-gray-500">
                                 Happy<br />Customers
                             </div>
                         </div>
@@ -46,57 +58,24 @@
                             <div class="text-3xl font-bold text-brand-600">
                                 100+
                             </div>
-                            <div class="text-gray-500 text-sm mt-1">
+                            <div class="mt-1 text-sm text-gray-500">
                                 Properties<br />Ready
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right Column - Image -->
+                <!-- Right Column - Image (Desktop only) -->
                 <div
                     class="lg:w-7/12 lg:absolute hidden lg:block mt-8 lg:mt-0 right-0 top-0 h-[300px] lg:h-full pointer-events-none select-none"
                 >
                     <img
                         src="../../../img/homexe-hero-house.png"
                         alt="Modern architectural house"
-                        class="w-full h-full object-cover object-center lg:object-left"
+                        class="object-cover object-center w-full h-full lg:object-left"
                     />
 
                     <Noise />
-                    <!-- Circular badge -->
-                    <!-- <div
-                        class="absolute top-8 right-8 bg-white rounded-full p-4"
-                    >
-                        <div class="relative w-16 h-16">
-                            <div
-                                class="absolute inset-0 flex items-center justify-center"
-                            >
-                                <span
-                                    class="text-[10px] tracking-wider rotate-[30deg]"
-                                    >Find your dreams estate</span
-                                >
-                            </div>
-                            <div
-                                class="absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-4 w-4"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                                    />
-                                </svg>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>

@@ -1,13 +1,15 @@
 <template>
-    <div class="mt-4 py-8">
-        <!-- Buy/Sell Toggle -->
-        <div class="inline-flex bg-white w-full sm:w-auto">
+    <div class="mt-2 md:mt-4">
+        <!-- Buy/Sell Toggle - Updated styling for mobile -->
+        <div
+            class="inline-flex w-full bg-white rounded-t-lg shadow-sm sm:w-auto"
+        >
             <button
                 :class="[
-                    'flex-1 sm:flex-none px-4 sm:px-8 py-3 font-medium transition-all border-b-2',
+                    'flex-1 sm:flex-none px-4 sm:px-8 py-3 font-medium transition-all border-b-2 rounded-tl-lg',
                     activeTab === 'buy'
-                        ? 'border-black'
-                        : 'text-gray-400 bg-gray-100 border-white',
+                        ? 'border-black bg-white text-black font-semibold'
+                        : 'text-gray-500 bg-gray-100 border-white',
                 ]"
                 @click="setTab('buy')"
             >
@@ -15,10 +17,10 @@
             </button>
             <button
                 :class="[
-                    'flex-1 sm:flex-none px-4 sm:px-8 py-3 font-medium transition-all border-b-2',
+                    'flex-1 sm:flex-none px-4 sm:px-8 py-3 font-medium transition-all border-b-2 rounded-tr-lg',
                     activeTab === 'sell'
-                        ? 'border-black'
-                        : 'text-gray-400 bg-gray-100 border-white',
+                        ? 'border-black bg-white text-black font-semibold'
+                        : 'text-gray-500 bg-gray-100 border-white',
                 ]"
                 @click="setTab('sell')"
             >
@@ -26,52 +28,100 @@
             </button>
         </div>
 
-        <!-- Search Form -->
+        <!-- Search Form - Improved mobile layout -->
         <div
-            class="bg-white px-3 sm:px-6 py-4 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8"
+            class="grid grid-cols-1 gap-3 px-3 py-4 bg-white rounded-b-lg rounded-tr-lg shadow-md sm:px-6 sm:gap-4"
         >
-            <div>
-                <label class="block text-sm text-gray-500 mb-2">Location</label>
-                <GoogleAutocomplete
-                    v-model="form.propertyAddress"
-                    :placeholder="
-                        activeTab === 'sell'
-                            ? '123 Main St, Boston, MA'
-                            : 'Long Beach, California'
-                    "
-                    :inputClass="'w-full border-none !shadow-none px-0 focus:outline-none focus:ring-0'"
-                    @place_changed="handlePlaceChanged"
-                />
-            </div>
+            <!-- Location field with icon -->
             <div class="relative">
-                <label class="block text-sm text-gray-500 mb-2">Urgency</label>
-                <select
-                    v-model="form.timeframe"
-                    class="w-full cursor-pointer border-none !shadow-none px-0 focus:outline-none focus:ring-0 text-gray-900"
+                <label class="block mb-1 text-sm font-medium text-gray-500"
+                    >Location</label
                 >
-                    <option value="" disabled selected>Select timeframe</option>
-                    <option
-                        v-for="option in timeframeOptions"
-                        :key="option.value"
-                        :value="option.value"
+                <div class="flex items-center">
+                    <div class="absolute left-0 text-gray-400">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-4 h-4"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                clip-rule="evenodd"
+                            />
+                        </svg>
+                    </div>
+                    <GoogleAutocomplete
+                        v-model="form.propertyAddress"
+                        :placeholder="
+                            activeTab === 'sell'
+                                ? '123 Main St, Boston, MA'
+                                : 'Long Beach, California'
+                        "
+                        :inputClass="[
+                            highlightLocationInput
+                                ? 'border-red-500 border'
+                                : 'border-none',
+                            'w-full !shadow-none pl-6 focus:outline-none focus:ring-0',
+                        ]"
+                        @place_changed="handlePlaceChanged"
+                    />
+                </div>
+            </div>
+
+            <!-- Timeframe field with icon -->
+            <div class="relative">
+                <label class="block mb-1 text-sm font-medium text-gray-500"
+                    >Urgency</label
+                >
+                <div class="flex items-center">
+                    <div class="absolute left-0 text-gray-400">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-4 h-4"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                clip-rule="evenodd"
+                            />
+                        </svg>
+                    </div>
+                    <select
+                        v-model="form.timeframe"
+                        class="w-full cursor-pointer border-none !shadow-none pl-6 focus:outline-none focus:ring-0 text-gray-900"
                     >
-                        {{ option.label }}
-                    </option>
-                </select>
+                        <option value="" disabled selected>
+                            Select timeframe
+                        </option>
+                        <option
+                            v-for="option in timeframeOptions"
+                            :key="option.value"
+                            :value="option.value"
+                        >
+                            {{ option.label }}
+                        </option>
+                    </select>
+                </div>
+
+                <!-- Search button now takes full width on mobile -->
                 <button
                     @click="findMatches"
-                    class="absolute right-0 bottom-0 bg-homexe-black p-2 sm:p-3"
+                    class="flex items-center justify-center w-full px-4 py-2 mt-3 text-white rounded-md sm:w-auto sm:absolute sm:right-0 sm:bottom-0 sm:mt-0 bg-homexe-black"
                     :class="{ 'error-animation': showError }"
                 >
                     <span
                         v-if="errorMessage"
-                        class="absolute whitespace-nowrap right-full mr-2 text-sm text-red-600"
+                        class="hidden mr-2 text-sm text-red-600 sm:block sm:absolute whitespace-nowrap sm:right-full"
                     >
                         {{ errorMessage }}
                     </span>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-4 w-4 sm:h-5 sm:w-5 text-white"
+                        class="w-4 h-4 mr-2 text-white sm:h-5 sm:w-5"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -83,6 +133,12 @@
                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                         />
                     </svg>
+                    <span class="sm:hidden">
+                        <span v-if="errorMessage">
+                            {{ errorMessage }}
+                        </span>
+                        <span v-else> Find Matches </span>
+                    </span>
                 </button>
             </div>
         </div>
@@ -174,7 +230,7 @@ export default {
                 propertyAddress: "",
                 phone: "",
                 email: "",
-                timeframe: "",
+                timeframe: "asap",
                 previousSale: "",
                 homeCondition: "",
                 reasonForSelling: "",
@@ -182,6 +238,7 @@ export default {
                 buyingIntention: "",
                 valid: false,
             }),
+            highlightLocationInput: false,
             contactInfoSectionRef: null,
             activeTab: "buy",
             timeframeOptions: [
@@ -214,12 +271,16 @@ export default {
             if (!this.form.propertyAddress.trim() || !this.form.timeframe) {
                 this.showError = true;
                 this.errorMessage = !this.form.propertyAddress.trim()
-                    ? "Address Required"
+                    ? "Location Required"
                     : "Timeframe Required";
+                if (!this.form.propertyAddress.trim()) {
+                    this.highlightLocationInput = true;
+                }
 
                 setTimeout(() => {
                     this.showError = false;
                     this.errorMessage = "";
+                    this.highlightLocationInput = false;
                 }, 1000);
                 return;
             }
@@ -243,7 +304,7 @@ export default {
                 const formattedAddress = address.replace(/\s(?=\d{5}$)/, ", ");
 
                 const response = await axios.post(
-                    "https://homexe.win/api/estimated-value",
+                    "https://portal.wbhus.com/api/estimated-value",
                     {
                         validatedAddress: formattedAddress,
                     }
@@ -330,7 +391,7 @@ export default {
 
             try {
                 const response = await axios.post(
-                    "https://homexe.win/api/verify",
+                    "https://portal.wbhus.com/api/verify",
                     {
                         property_address: this.form.propertyAddress,
                         phone: this.addUsCountryCode(this.form.phone),
@@ -411,18 +472,21 @@ export default {
         },
         async sendLead() {
             try {
-                await axios.post("https://homexe.win/api/verify/send-lead", {
-                    phone: this.addUsCountryCode(this.form.phone),
-                    email: this.form.email,
-                    address: this.form.propertyAddress,
-                    timeframe: this.form.timeframe,
-                    previousSale: this.form.previousSale,
-                    homeCondition: this.form.homeCondition,
-                    reasonForSelling: this.form.reasonForSelling,
-                    mostImportant: this.form.mostImportant,
-                    buyingIntention: this.form.buyingIntention,
-                    valid: this.form.valid,
-                });
+                await axios.post(
+                    "https://portal.wbhus.com/api/verify/send-lead",
+                    {
+                        phone: this.addUsCountryCode(this.form.phone),
+                        email: this.form.email,
+                        address: this.form.propertyAddress,
+                        timeframe: this.form.timeframe,
+                        previousSale: this.form.previousSale,
+                        homeCondition: this.form.homeCondition,
+                        reasonForSelling: this.form.reasonForSelling,
+                        mostImportant: this.form.mostImportant,
+                        buyingIntention: this.form.buyingIntention,
+                        valid: this.form.valid,
+                    }
+                );
                 this.$refs.contactInfoSection.showVerificationMessage(
                     "Information submitted successfully!",
                     true

@@ -57,7 +57,7 @@
                         :placeholder="
                             activeTab === 'sell'
                                 ? '123 Main St, Boston, MA'
-                                : 'Long Beach, California'
+                                : 'Boston, MA'
                         "
                         :inputClass="[
                             highlightLocationInput
@@ -179,6 +179,64 @@
                 @back="handleBack"
             />
         </BottomDrawer>
+
+        <!-- Location Restriction Modal -->
+        <div
+            v-if="showLocationModal"
+            class="fixed inset-0 z-50 flex items-center justify-center"
+        >
+            <div
+                class="absolute inset-0 bg-black opacity-50"
+                @click="closeLocationModal"
+            ></div>
+            <div
+                class="relative z-10 max-w-md p-6 mx-4 bg-white rounded-lg shadow-xl"
+            >
+                <div class="flex items-start justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900">
+                        Service Area Notice
+                    </h3>
+                    <button
+                        @click="closeLocationModal"
+                        class="text-gray-400 hover:text-gray-500"
+                    >
+                        <svg
+                            class="w-5 h-5"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"
+                            ></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="mb-4">
+                    <p class="text-gray-700">
+                        Thank you for your interest in Homexe by Cameron
+                        Prestige.
+                    </p>
+                    <p class="mt-2 text-gray-700">
+                        We're currently licensed to operate exclusively in
+                        Massachusetts. The address you've entered appears to be
+                        outside our service area.
+                    </p>
+                    <p class="mt-2 font-medium text-gray-900">
+                        {{ nonMAAddress }}
+                    </p>
+                </div>
+                <div class="flex justify-end">
+                    <button
+                        @click="closeLocationModal"
+                        class="px-4 py-2 text-white rounded-md bg-homexe-black hover:bg-gray-800"
+                    >
+                        I Understand
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -259,6 +317,8 @@ export default {
                     label: "No rush",
                 },
             ],
+            showLocationModal: false,
+            nonMAAddress: "",
         };
     },
     methods: {
@@ -282,6 +342,24 @@ export default {
                     this.errorMessage = "";
                     this.highlightLocationInput = false;
                 }, 1000);
+                return;
+            }
+
+            // Check if address is in MA
+            const isInMA =
+                this.form.propertyAddress.includes(", MA ") ||
+                this.form.propertyAddress.includes(", Massachusetts ");
+
+            if (!isInMA) {
+                this.showError = true;
+                this.errorMessage = "We're only licensed in Massachusetts";
+                this.highlightLocationInput = true;
+
+                setTimeout(() => {
+                    this.showError = false;
+                    this.errorMessage = "";
+                    this.highlightLocationInput = false;
+                }, 3000);
                 return;
             }
 
@@ -466,8 +544,18 @@ export default {
                         component.types.includes("postal_code")
                     )?.long_name || "";
 
-                this.form.propertyAddress =
+                const fullAddress =
                     `${streetNumber} ${street}, ${city}, ${state} ${zipCode}`.trim();
+
+                // Check if address is in MA immediately when value is set
+                if (state && state !== "MA") {
+                    this.nonMAAddress = fullAddress;
+                    this.showLocationModal = true;
+                    this.form.propertyAddress = ""; // Clear the input
+                    return;
+                }
+
+                this.form.propertyAddress = fullAddress;
             }
         },
         async sendLead() {
@@ -506,6 +594,10 @@ export default {
         },
         setTab(tab) {
             this.activeTab = tab;
+        },
+        closeLocationModal() {
+            this.showLocationModal = false;
+            this.nonMAAddress = "";
         },
     },
 };

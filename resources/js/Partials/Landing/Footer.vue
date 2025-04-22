@@ -15,6 +15,7 @@
                     <div class="mb-4">
                         <h3 class="mb-2 font-bold">Contact Us!</h3>
                         <p>Homexe: +1 855-781-HOME</p>
+                        <p>Brokered by Cameron Prestige</p>
                         <p>Cameron Real Estate Group</p>
                         <p>MLS ID: AC0756</p>
                         <p>20C Del Carmine Street, Wakefield, MA 01880, US</p>
@@ -30,11 +31,15 @@
                             src="../../../img/equal-opportunity.svg"
                             class="w-24 h-24 invert"
                         />
+                        <img
+                            src="../../../img/homexe-and-cameron.png"
+                            class="w-24 contrast-[5000%] saturate-0 invert"
+                        />
                     </div>
                 </div>
             </div>
             <div class="w-full text-sm text-center container-size">
-                © {{ currentYear }} Homexe
+                © {{ currentYear }} Homexe. Brokered by Cameron Prestige
             </div>
         </div>
     </footer>

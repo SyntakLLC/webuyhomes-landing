@@ -9,7 +9,7 @@ ignore:
   - composer.lock
   - package-lock.json
 environments:
-  production:
+  staging:
     memory: 1024
     cli-memory: 512
     domain: wbhus.com

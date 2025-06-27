@@ -1,12 +1,12 @@
 <template>
     <div
-        class="max-w-xl px-6 py-8 mt-4"
+        class="px-6 py-8 mt-4 max-w-xl"
         :style="`filter: drop-shadow(0 1px 20px rgba(0, 0, 0, ${
             small ? 0 : 0.5
         }));`"
     >
         <!-- Initial form to enter address -->
-        <div class="flex items-center justify-center mx-4 text-left text-black">
+        <div class="flex justify-center items-center mx-4 text-left text-black">
             <div class="relative w-full">
                 <InputLabel class="mb-2 text-lg text-white/80"
                     >Enter your address</InputLabel
@@ -20,7 +20,7 @@
                     />
                     <button
                         @click="findMatches"
-                        class="absolute right-0 h-full px-4 pt-2 pb-3 text-base font-semibold text-white uppercase rounded-r-lg bg-secondary-600 hover:bg-secondary-500 font-display"
+                        class="absolute right-0 px-4 pt-2 pb-3 h-full text-base font-semibold text-white uppercase rounded-r-lg bg-secondary-600 hover:bg-secondary-500 font-display"
                         :class="{ 'error-animation': showError }"
                     >
                         {{ buttonText }}
@@ -130,7 +130,12 @@ export default {
                 valid: false,
             }),
             contactInfoSectionRef: null,
+            utmSource: "",
         };
+    },
+    mounted() {
+        const urlParams = new URLSearchParams(window.location.search);
+        this.utmSource = urlParams.get("utm_source");
     },
     methods: {
         findMatches() {
@@ -295,6 +300,7 @@ export default {
                         mostImportant: this.form.mostImportant,
                         buyingIntention: this.form.buyingIntention,
                         valid: this.form.valid,
+                        utmSource: this.utmSource,
                     }
                 );
                 this.$refs.contactInfoSection.showVerificationMessage(
